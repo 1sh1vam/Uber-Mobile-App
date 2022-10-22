@@ -1,13 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
 import { Provider } from 'react-redux';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screen/HomeScreen';
 import { store } from './store';
+import MapScreen from './screen/MapScreen';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <Provider store={store}>
-      <HomeScreen />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="HomeScreen" component={HomeScreen} />
+          <Stack.Screen name="MapScreen" component={MapScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 }
