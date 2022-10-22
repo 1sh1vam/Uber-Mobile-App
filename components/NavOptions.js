@@ -2,6 +2,7 @@ import { FlatList, Image, Pressable, Text, View } from 'react-native';
 import React from 'react';
 import { styled } from 'nativewind';
 import { Icon } from '@rneui/themed';
+import { useNavigation } from '@react-navigation/native';
 
 const StyledPressable = styled(Pressable);
 const StyledIcon = styled(Icon);
@@ -22,13 +23,18 @@ const data = [
 ];
 
 const NavOptions = () => {
+  const navigation = useNavigation();
+
   return (
     <FlatList
       data={data}
       horizontal
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <StyledPressable className="active:opacity-50 p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40">
+        <StyledPressable
+          onPress={() => navigation.navigate(item.screen)}
+          className="active:opacity-50 p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40"
+        >
           <View>
             <Image
               style={{ resizeMode: 'contain' }}
