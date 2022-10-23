@@ -1,6 +1,11 @@
 import { Text, View } from 'react-native'
 import React from 'react'
 import Map from '../components/Map';
+import { createStackNavigator } from '@react-navigation/stack';
+import NavigateCard from '../components/NavigateCard';
+import RideOptionsCard from '../components/RideOptionsCard';
+
+const Stack = createStackNavigator();
 
 const MapScreen = () => {
   return (
@@ -9,7 +14,22 @@ const MapScreen = () => {
         <Map />
       </View>
       <View className="h-1/2">
-        <Text>Bottom part</Text>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="NavigateCard"
+            component={NavigateCard}
+            options={{
+              headerShown: false
+            }}
+          />
+          <Stack.Screen
+            name="RideOptionsCard"
+            component={RideOptionsCard}
+            options={{
+              headerShown: false
+            }}
+          />
+        </Stack.Navigator>
       </View>
     </View>
   )

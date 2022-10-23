@@ -5,7 +5,6 @@ import { selectOrigin } from '../store/slices/navSlices'
 
 const Map = () => {
   const origin = useSelector(selectOrigin);
-  console.log('oriign', origin)
   return (
     <MapView
       initialRegion={{
