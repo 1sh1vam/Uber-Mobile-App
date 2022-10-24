@@ -25,7 +25,7 @@ const NavFavourites = () => {
         <View className="h-[0.5px] bg-gray-200" />
       )}
       renderItem={({ item }) => (
-        <StyledPressable className="flex-row items-center p-5">
+        <StyledPressable className="flex-row items-center p-5 active:opacity-50">
           <StyledIcon
             name={item.icon}
             type="ionicon"
