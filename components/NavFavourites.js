@@ -21,6 +21,9 @@ const NavFavourites = () => {
     <FlatList
       data={data}
       keyExtractor={(item) => item.id}
+      ItemSeparatorComponent={() => (
+        <View className="h-[0.5px] bg-gray-200" />
+      )}
       renderItem={({ item }) => (
         <StyledPressable className="flex-row items-center p-5">
           <StyledIcon
@@ -31,7 +34,8 @@ const NavFavourites = () => {
             className="bg-gray-300 mr-4 p-3 rounded-full"
           />
           <View>
-            <Text>Hello</Text>
+            <Text className="text-lg font-semibold">{item.location}</Text>
+            <Text className="text-gray-500">{item.destination}</Text>
           </View>
         </StyledPressable>
       )}
