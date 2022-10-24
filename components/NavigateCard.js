@@ -13,7 +13,8 @@ const NavigateCard = () => {
   return (
     <SafeAreaView className="flex-1 bg-white">
       <Text className="text-xl text-center py-5">Hello, Satya Puro</Text>
-      <GooglePlacesAutocomplete
+      <View className="border-t flex-shrink border-gray-200">
+        <GooglePlacesAutocomplete
           placeholder="Where to?"
           nearByPlacesApi="GooglePlacesSearch"
           debounce={400}
@@ -34,6 +35,7 @@ const NavigateCard = () => {
             language: 'en'
           }}
         />
+      </View>
     </SafeAreaView>
   )
 }
