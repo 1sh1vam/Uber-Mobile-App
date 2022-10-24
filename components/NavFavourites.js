@@ -1,4 +1,4 @@
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Pressable, Text, View } from 'react-native';
 import React from 'react';
 import { styled } from 'nativewind';
 import { Icon } from '@rneui/themed';
@@ -44,5 +44,3 @@ const NavFavourites = () => {
 };
 
 export default NavFavourites;
-
-const styles = StyleSheet.create({});
