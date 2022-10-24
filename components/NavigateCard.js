@@ -2,8 +2,14 @@ import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_MAPS_API_KEY } from '@env';
+import { useDispatch } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
+import { setDestination } from '../store/slices/navSlices';
 
 const NavigateCard = () => {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <Text className="text-xl text-center py-5">Hello, Satya Puro</Text>
@@ -17,7 +23,11 @@ const NavigateCard = () => {
           minLength={2}
           returnKeyType="search"
           onPress={(data, details = null) => {
-
+            dispatch(setDestination({
+              location: details.geometry.location,
+              description: data.description
+            }));
+            navigation.navigate('RideOptionsCard')
           }}
           enablePoweredByContainer={false}
           query={{
