@@ -1,6 +1,7 @@
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { GOOGLE_MAPS_API_KEY } from '@env';
 
 const NavigateCard = () => {
   return (
@@ -12,6 +13,17 @@ const NavigateCard = () => {
           nearByPlacesApi="GooglePlacesSearch"
           debounce={400}
           styles={mapAutoCompleteStyles}
+          fetchDetails
+          minLength={2}
+          returnKeyType="search"
+          onPress={(data, details = null) => {
+
+          }}
+          enablePoweredByContainer={false}
+          query={{
+            key: GOOGLE_MAPS_API_KEY,
+            language: 'en'
+          }}
         />
       </View>
     </SafeAreaView>
