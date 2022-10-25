@@ -1,6 +1,14 @@
-import { FlatList, Image, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { styled } from 'nativewind'
+import {
+  FlatList,
+  Image,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import React, { useState } from 'react';
+import { styled } from 'nativewind';
 import { Icon } from '@rneui/themed';
 
 const data = [
@@ -27,6 +35,8 @@ const data = [
 const StyledPressable = styled(Pressable);
 
 const RideOptionsCard = () => {
+  const [selectedOption, setSelectedOption] = useState(null);
+
   return (
     <SafeAreaView>
       <View>
@@ -40,9 +50,18 @@ const RideOptionsCard = () => {
         data={data}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <StyledPressable className="flex flex-row items-center justify-between px-10 active:bg-gray-200">
+          <StyledPressable
+            onPress={() => setSelectedOption(item)}
+            className={`flex flex-row items-center justify-between px-10 active:bg-gray-200 ${
+              selectedOption?.id === item.id && 'bg-gray-300'
+            }`}
+          >
             <View className="flex-row items-center gap-4">
-              <Image style={{ resizeMode: 'contain' }} source={item.image} className="w-[100px] h-[100px]" />
+              <Image
+                style={{ resizeMode: 'contain' }}
+                source={item.image}
+                className="w-[100px] h-[100px]"
+              />
               <View>
                 <Text className="text-xl font-semibold">{item.title}</Text>
                 <Text>Travel time...</Text>
@@ -56,7 +75,7 @@ const RideOptionsCard = () => {
         <Text className="text-white text-xl text-center">Choose ..</Text>
       </StyledPressable>
     </SafeAreaView>
-  )
-}
+  );
+};
 
 export default RideOptionsCard;
