@@ -73,7 +73,7 @@ const RideOptionsCard = () => {
           </StyledPressable>
         )}
       />
-      <StyledPressable className="bg-black py-3 m-4 active:opacity-50">
+      <StyledPressable disabled={!selectedOption} className={`bg-black py-3 m-4 active:opacity-50 ${!selectedOption && 'bg-gray-300'}`}>
         <Text className="text-white text-xl text-center">Choose {selectedOption?.title}</Text>
       </StyledPressable>
     </SafeAreaView>
