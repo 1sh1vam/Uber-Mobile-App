@@ -10,6 +10,7 @@ import {
 import React, { useState } from 'react';
 import { styled } from 'nativewind';
 import { Icon } from '@rneui/themed';
+import { useNavigation } from '@react-navigation/native';
 
 const data = [
   {
@@ -35,12 +36,13 @@ const data = [
 const StyledPressable = styled(Pressable);
 
 const RideOptionsCard = () => {
+  const navigation = useNavigation();
   const [selectedOption, setSelectedOption] = useState(null);
 
   return (
     <SafeAreaView>
       <View>
-        <StyledPressable className="absolute top-3 left-5 p-3 z-50">
+        <StyledPressable onPress={() => navigation.navigate('NavigateCard')} className="absolute top-3 left-5 p-3 z-50">
           <Icon name="chevron-left" type="fontawesome" />
         </StyledPressable>
         <Text className="text-center text-xl py-5">Select a Ride</Text>
@@ -72,7 +74,7 @@ const RideOptionsCard = () => {
         )}
       />
       <StyledPressable className="bg-black py-3 m-4 active:opacity-50">
-        <Text className="text-white text-xl text-center">Choose {selectedOption.title}</Text>
+        <Text className="text-white text-xl text-center">Choose {selectedOption?.title}</Text>
       </StyledPressable>
     </SafeAreaView>
   );
