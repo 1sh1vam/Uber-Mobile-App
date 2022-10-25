@@ -37,6 +37,8 @@ const data = [
 
 const StyledPressable = styled(Pressable);
 
+const SURGE_CHARGE_RATE = 14;
+
 const RideOptionsCard = () => {
   const navigation = useNavigation();
   const [selectedOption, setSelectedOption] = useState(null);
@@ -45,10 +47,15 @@ const RideOptionsCard = () => {
   return (
     <SafeAreaView>
       <View>
-        <StyledPressable onPress={() => navigation.navigate('NavigateCard')} className="absolute top-3 left-5 p-3 z-50">
+        <StyledPressable
+          onPress={() => navigation.navigate('NavigateCard')}
+          className="absolute top-3 left-5 p-3 z-50"
+        >
           <Icon name="chevron-left" type="fontawesome" />
         </StyledPressable>
-        <Text className="text-center text-xl py-5">Select a Ride - {travelTimeInfo?.distance.text}</Text>
+        <Text className="text-center text-xl py-5">
+          Select a Ride - {travelTimeInfo?.distance.text}
+        </Text>
       </View>
 
       <FlatList
@@ -57,9 +64,8 @@ const RideOptionsCard = () => {
         renderItem={({ item }) => (
           <StyledPressable
             onPress={() => setSelectedOption(item)}
-            className={`flex flex-row items-center justify-between px-10 active:bg-gray-200 ${
-              selectedOption?.id === item.id && 'bg-gray-300'
-            }`}
+            className={`flex flex-row items-center justify-between px-10 active:bg-gray-200 ${selectedOption?.id === item.id && 'bg-gray-300'
+              }`}
           >
             <View className="flex-row items-center gap-4">
               <Image
@@ -72,12 +78,27 @@ const RideOptionsCard = () => {
                 <Text>{travelTimeInfo?.duration.text}</Text>
               </View>
             </View>
-            <Text className="text-xl">₹300</Text>
+            <Text className="text-xl">
+              {new Intl.NumberFormat("en-IN", {
+                style: "currency",
+                currency: "INR",
+              }).format(
+                (travelTimeInfo?.duration.value *
+                SURGE_CHARGE_RATE *
+                item.multiplier) / 100
+              )}
+            </Text>
           </StyledPressable>
         )}
       />
-      <StyledPressable disabled={!selectedOption} className={`bg-black py-3 m-4 active:opacity-50 ${!selectedOption && 'bg-gray-300'}`}>
-        <Text className="text-white text-xl text-center">Choose {selectedOption?.title}</Text>
+      <StyledPressable
+        disabled={!selectedOption}
+        className={`bg-black py-3 m-4 active:opacity-50 ${!selectedOption && 'bg-gray-300'
+          }`}
+      >
+        <Text className="text-white text-xl text-center">
+          Choose {selectedOption?.title}
+        </Text>
       </StyledPressable>
     </SafeAreaView>
   );
