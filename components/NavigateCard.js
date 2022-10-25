@@ -46,7 +46,10 @@ const NavigateCard = () => {
       <NavFavourites />
 
       <View className="flex-row bg-white justify-evenly py-4 border-t border-gray-100 mt-auto">
-        <StyledPressable className="flex-row items-center justify-between w-24 bg-black px-4 py-3 pt-2 rounded-full active:opacity-50">
+        <StyledPressable
+          onPress={() => navigation.navigate('RideOptionsCard')}
+          className="flex-row items-center justify-between w-24 bg-black px-4 py-3 pt-2 rounded-full active:opacity-50"
+        >
           <Icon name="car" type="font-awesome" color="white" size={16} />
           <Text className="text-white text-center">Rides</Text>
         </StyledPressable>
