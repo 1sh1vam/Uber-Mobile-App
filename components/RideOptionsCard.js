@@ -11,6 +11,8 @@ import React, { useState } from 'react';
 import { styled } from 'nativewind';
 import { Icon } from '@rneui/themed';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { selectTravelTimeInfo } from '../store/slices/navSlices';
 
 const data = [
   {
@@ -38,6 +40,7 @@ const StyledPressable = styled(Pressable);
 const RideOptionsCard = () => {
   const navigation = useNavigation();
   const [selectedOption, setSelectedOption] = useState(null);
+  const travelTimeInfo = useSelector(selectTravelTimeInfo);
 
   return (
     <SafeAreaView>
@@ -45,7 +48,7 @@ const RideOptionsCard = () => {
         <StyledPressable onPress={() => navigation.navigate('NavigateCard')} className="absolute top-3 left-5 p-3 z-50">
           <Icon name="chevron-left" type="fontawesome" />
         </StyledPressable>
-        <Text className="text-center text-xl py-5">Select a Ride</Text>
+        <Text className="text-center text-xl py-5">Select a Ride - {travelTimeInfo?.distance.text}</Text>
       </View>
 
       <FlatList
