@@ -69,7 +69,7 @@ const RideOptionsCard = () => {
               />
               <View>
                 <Text className="text-xl font-semibold">{item.title}</Text>
-                <Text>Travel time...</Text>
+                <Text>{travelTimeInfo?.duration.text}</Text>
               </View>
             </View>
             <Text className="text-xl">₹300</Text>
